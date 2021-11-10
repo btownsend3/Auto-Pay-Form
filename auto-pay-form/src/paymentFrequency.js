@@ -1,5 +1,4 @@
 // Uses data from the form to create a document with all of the payment dates/amounts filled in
-
 function paymentFrequency (firstDate, payFrequency, totalPayments, payment) {
 
   let paymentDates = []
@@ -7,8 +6,8 @@ function paymentFrequency (firstDate, payFrequency, totalPayments, payment) {
   totalPayments = parseInt(totalPayments)
 
   // Convert human-entered date to JS friendly date
-  let dateMap = firstDate.split('/').map(item => parseInt(item))
-  let newDate = new Date((dateMap[2] + 2000), (dateMap[0] - 1), dateMap[1], 0, 0, 0)
+  let dateMap = firstDate.split('-').map(item => parseInt(item))
+  let newDate = new Date((dateMap[0]), (dateMap[1] - 1), dateMap[2], 0, 0, 0)
 
   // Creates first date object to push to paymentDates arr
   let firstPaymentDate = {

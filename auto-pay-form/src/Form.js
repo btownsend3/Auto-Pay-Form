@@ -2,125 +2,165 @@ import React, {useContext} from 'react'
 import {Context} from './Context'
 
 function Form() {
-  const {handleRouting, handleAccount, handlePayment, routingNum, accountNum, payment, payFrequency, handlePayFrequency, firstDate, handleFirstDate, chosenDate, handleChosenDate, totalPayments, handleTotalPayments, checkingNames, debtorName, debtorNumber, collectorNumber, handleCheckingNames, handleDebtorName, handleDebtorNumber, handleCollectorNumber, setCompleteForm} = useContext(Context)
+  const {handleRouting, handleAccount, handlePayment, routingNum, accountNum, payment, payFrequency, handlePayFrequency, firstDate, handleFirstDate, totalPayments, handleTotalPayments, checkingNames, debtorName, debtorNumber, collectorNumber, handleCheckingNames, handleDebtorName, handleDebtorNumber, handleCollectorNumber, setCompleteForm, handleFrequencyForm, frequencyForm, handleNthWeekdayForm, nthWeekdayForm, handleNthWeekday, nthWeekday, weekday, handleWeekday} = useContext(Context)
 
   function handleSubmit(e) {
     e.preventDefault()
-    console.log('submit')
     setCompleteForm(prev => true)
   }
 
   return (
-    <div class="form-container">
+    <div className="form-container">
       <form>
-        <label>Routing Number
-          <input
-             
-            type="text"
-            name="routing"
-            value={routingNum}
-            onChange={handleRouting}
-          />
-        </label>
+        <div className="flex">
+          <button className={frequencyForm ? 'btn-filled' : 'btn-border'} onClick={handleFrequencyForm}>Frequency</button>
+          <button className={nthWeekdayForm ? 'btn-filled' : 'btn-border'} onClick={handleNthWeekdayForm}>Nth Weekday</button>
+        </div>
+        <div className="flex">
+          <label>Routing Number
+            <input
+              required
+              type="text"
+              name="routing"
+              value={routingNum}
+              onChange={handleRouting}
+            />
+          </label>
+          <br/>
+          <label>Account Number
+            <input
+              required
+              type="text"
+              name="account"
+              value={accountNum}
+              onChange={handleAccount}
+            />
+          </label>
+        </div>
         <br/>
-        <label>Account Number
-          <input
-            
-            type="text"
-            name="account"
-            value={accountNum}
-            onChange={handleAccount}
-          />
-        </label>
+        <div className="flex">
+          <label>Payment Amount
+            <input
+              required
+              type="text"
+              name="payment"
+              value={payment}
+              onChange={handlePayment}
+            />
+          </label>
+          <br/>
+          <label>First payment date
+            <input
+              required
+              type="date"
+              name="first date"
+              value={firstDate}
+              onChange={handleFirstDate}
+              placeholder="mm/dd/yy"
+            />
+          </label>
+        </div>
         <br/>
-        <label>Payment Amount
-          <input
-            
-            type="text"
-            name="payment"
-            value={payment}
-            onChange={handlePayment}
-          />
-        </label>
+        <div className="flex">
+          <label>Total Payments
+            <input
+              required
+              type="text"
+              name="total payments"
+              value={totalPayments}
+              onChange={handleTotalPayments}
+            />
+          </label>
+          <br/>
+          {frequencyForm && 
+            <label>Payment Frequency
+              <input
+                required
+                type="text"
+                name="payment frequency"
+                value={payFrequency}
+                onChange={handlePayFrequency}
+                placeholder="days, i.e. 14"
+              />
+            </label>
+          }
+          {nthWeekdayForm &&
+            <label>Nth Weekday
+              <div className="flex">
+              <select 
+                required 
+                value={nthWeekday} 
+                onChange={handleNthWeekday}
+              >
+                <option value=""></option>
+                <option value="1">1st</option>
+                <option value="2">2nd</option>
+                <option value="3">3rd</option>
+                <option value="4">4th</option>
+              </select>
+              <select 
+                required 
+                id="input-weekday" value={weekday}
+                onChange={handleWeekday}
+              >
+                <option value=""></option>
+                <option value="1">Monday</option>
+                <option value="2">Tuesday</option>
+                <option value="3">Wednesday</option>
+                <option value="4">Thursday</option>
+                <option value="5">Friday</option>
+              </select>
+              </div>
+            </label>
+          }
         <br/>
-        <label>First payment date
-          <input
-            
-            type="text"
-            name="first date"
-            value={firstDate}
-            onChange={handleFirstDate}
-            placeholder="mm/dd/yy"
-          />
-        </label>
+        </div>
         <br/>
-        <label>Total Payments
-          <input
-            
-            type="text"
-            name="total payments"
-            value={totalPayments}
-            onChange={handleTotalPayments}
-          />
-        </label>
+        <div className="flex">
+          <label>Name(s) on checking
+            <input
+              required
+              type="text"
+              name="checking names"
+              value={checkingNames}
+              onChange={handleCheckingNames}  
+            />
+          </label>
+          <br/>
+          <label>Debtor Name
+            <input
+              required
+              type="text"
+              name="debtor name"
+              value={debtorName}
+              onChange={handleDebtorName}
+            />
+          </label>
+        </div>
         <br/>
-        <label>Payment Frequency
-          <input
-            type="text"
-            name="payment frequency"
-            value={payFrequency}
-            onChange={handlePayFrequency}
-            placeholder="days, i.e. 14"
-          />
-        </label>
+        <div className="flex">
+          <label>Debtor Number
+            <input
+              required
+              type="text"
+              name="debtor number"
+              value={debtorNumber}
+              onChange={handleDebtorNumber}
+            />
+          </label>
+          <br/>
+          <label>Collector Number
+            <input
+              required
+              type="text"
+              name="collector number"
+              value={collectorNumber}
+              onChange={handleCollectorNumber}
+            />
+          </label>
+        </div>
         <br/>
-        <label>Day of month
-          <input
-            type="text"
-            name="chosen date"
-            value={chosenDate}
-            onChange={handleChosenDate}
-            placeholder="date, i.e. 15"
-          />
-        </label>
-        <br/>
-        <label>Name(s) on checking
-          <input
-            type="text"
-            name="checking names"
-            value={checkingNames}
-            onChange={handleCheckingNames}  
-          />
-        </label>
-        <br/>
-        <label>Debtor Name
-          <input
-            type="text"
-            name="debtor name"
-            value={debtorName}
-            onChange={handleDebtorName}
-          />
-        </label>
-        <br/>
-        <label>Debtor Number
-          <input
-            type="text"
-            name="debtor number"
-            value={debtorNumber}
-            onChange={handleDebtorNumber}
-          />
-        </label>
-        <br/>
-        <label>Collector Number
-          <input
-            type="text"
-            name="collector number"
-            value={collectorNumber}
-            onChange={handleCollectorNumber}
-          />
-        </label>
-        <br/>
-        <button onClick={handleSubmit}>Submit</button>
+        {nthWeekdayForm || frequencyForm ? <button onClick={handleSubmit}>Submit</button> : null }
       </form>
     </div>
   )
