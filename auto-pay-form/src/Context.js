@@ -8,12 +8,15 @@ function ContextProvider(props) {
   const [firstDate, setFirstDate] = useState('')
   const [totalPayments, setTotalPayments] = useState('')
   const [payFrequency, setPayFrequency] = useState('')
-  const [chosenDate, setChosenDate] = useState('')
   const [checkingNames, setCheckingNames] = useState('')
   const [debtorName, setDebtorName] = useState('')
   const [debtorNumber, setDebtorNumber] = useState('')
   const [collectorNumber, setCollectorNumber] = useState('')
   const [completeForm, setCompleteForm] = useState(false)
+  const [nthWeekday, setNthWeekday] = useState('')
+  const [weekday, setWeekday] = useState('')
+  const [frequencyForm, setFrequencyForm] = useState(false)
+  const [nthWeekdayForm, setNthWeekdayForm] = useState(false)
   
   function handleRouting(e) {
     setRoutingNum(prev => e.target.value)
@@ -39,10 +42,6 @@ function ContextProvider(props) {
     setFirstDate(prev => e.target.value)
   }
 
-  function handleChosenDate(e) {
-    setChosenDate(prev => e.target.value)
-  }
-
   function handleCheckingNames(e) {
     setCheckingNames(prev => e.target.value)
   }
@@ -59,8 +58,28 @@ function ContextProvider(props) {
     setCollectorNumber(prev => e.target.value)
   }
 
+  function handleFrequencyForm(e) {
+    e.preventDefault()
+    setFrequencyForm(prev => true)
+    setNthWeekdayForm(prev => false)
+  }
+
+  function handleNthWeekdayForm(e) {
+    e.preventDefault()
+    setFrequencyForm(prev => false)
+    setNthWeekdayForm(prev => true)
+  }
+
+  function handleNthWeekday(e) {
+    setNthWeekday(prev => e.target.value)
+  }
+
+  function handleWeekday(e) {
+    setWeekday(prev => e.target.value)
+  }
+
   return (
-    <Context.Provider value={{handleRouting, handleAccount, handlePayment, routingNum, accountNum, payment, payFrequency, handlePayFrequency, firstDate, handleFirstDate, chosenDate, handleChosenDate, totalPayments, handleTotalPayments, checkingNames, debtorName, debtorNumber, collectorNumber, handleCheckingNames, handleDebtorName, handleDebtorNumber, handleCollectorNumber, setCompleteForm, completeForm}}>
+    <Context.Provider value={{handleRouting, handleAccount, handlePayment, routingNum, accountNum, payment, payFrequency, handlePayFrequency, firstDate, handleFirstDate, totalPayments, handleTotalPayments, checkingNames, debtorName, debtorNumber, collectorNumber, handleCheckingNames, handleDebtorName, handleDebtorNumber, handleCollectorNumber, setCompleteForm, completeForm, handleFrequencyForm, frequencyForm, handleNthWeekdayForm, nthWeekdayForm, handleNthWeekday, handleWeekday, weekday, nthWeekday}}>
       {props.children}
     </Context.Provider>
   )

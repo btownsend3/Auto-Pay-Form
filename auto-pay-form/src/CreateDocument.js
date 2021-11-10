@@ -2,10 +2,17 @@ import React, {useContext} from 'react'
 import {Context} from './Context'
 import PaymentLineItem from './PaymentLineItem'
 import paymentFrequency from './paymentFrequency'
+import {getPaymentDates} from './nthDayOfTheWeek'
 
 function CreateDocument() {
-  const {collectorNumber, debtorName, checkingNames, debtorNumber, payment, routingNum, accountNum, firstDate, payFrequency, totalPayments} = useContext(Context)
-  const paymentDates = paymentFrequency(firstDate, payFrequency, totalPayments, payment)
+  const {collectorNumber, debtorName, checkingNames, debtorNumber, payment, routingNum, accountNum, firstDate, payFrequency, totalPayments, frequencyForm, nthWeekdayForm, weekday, nthWeekday} = useContext(Context)
+  let paymentDates
+  if (frequencyForm) {
+    paymentDates = paymentFrequency(firstDate, payFrequency, totalPayments, payment)
+  } else if (nthWeekdayForm) {
+    paymentDates = getPaymentDates(nthWeekday, weekday, firstDate, totalPayments, payment)
+  }
+
   while (paymentDates.length < 20) {
     paymentDates.push({
       key: paymentDates.length + 1,
