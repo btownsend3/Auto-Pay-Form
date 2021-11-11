@@ -29,6 +29,7 @@ function CreateDocument() {
 
   return (
     <div>
+      <button id="btn-print" onClick={() => window.print()}>Print</button>
       <h1 className="text-center">Auto Pay Information</h1>
       <p><strong>Collector #:</strong> {collectorNumber}</p>
       <p><strong>NAME(S) ON CHECKING ACCOUNT:</strong> {checkingNames}</p>
