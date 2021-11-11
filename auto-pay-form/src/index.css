@@ -114,6 +114,10 @@ button {
   color: white;
 }
 
+#btn-print {
+  position: absolute;
+}
+
 .space-between {
   justify-content: space-between;
 }
@@ -134,3 +138,9 @@ button {
 }
 
 @page { size: auto;  margin: 0mm; }
+
+@media print {
+  #btn-print {
+    visibility: hidden;
+  }
+}
