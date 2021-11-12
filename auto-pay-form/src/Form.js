@@ -2,7 +2,7 @@ import React, {useContext} from 'react'
 import {Context} from './Context'
 
 function Form() {
-  const {handleRouting, handleAccount, handlePayment, routingNum, accountNum, payment, payFrequency, handlePayFrequency, firstDate, handleFirstDate, totalPayments, handleTotalPayments, checkingNames, debtorName, debtorNumber, collectorNumber, handleCheckingNames, handleDebtorName, handleDebtorNumber, handleCollectorNumber, setCompleteForm, handleFrequencyForm, frequencyForm, handleNthWeekdayForm, nthWeekdayForm, handleNthWeekday, nthWeekday, weekday, handleWeekday} = useContext(Context)
+  const {handleRouting, handleAccount, handlePayment, routingNum, accountNum, payment, payFrequency, handlePayFrequency, firstDate, handleFirstDate, totalPayments, handleTotalPayments, checkingNames, debtorName, debtorNumber, collectorNumber, handleCheckingNames, handleDebtorName, handleDebtorNumber, handleCollectorNumber, setCompleteForm, handleFrequencyForm, frequencyForm, handleNthWeekdayForm, nthWeekdayForm, handleNthWeekday, nthWeekday, weekday, handleWeekday, handleDateForm, dateForm} = useContext(Context)
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -11,10 +11,11 @@ function Form() {
 
   return (
     <div className="form-container">
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="flex">
           <button className={frequencyForm ? 'btn-filled' : 'btn-border'} onClick={handleFrequencyForm}>Frequency</button>
           <button className={nthWeekdayForm ? 'btn-filled' : 'btn-border'} onClick={handleNthWeekdayForm}>Nth Weekday</button>
+          <button className={dateForm ? 'btn-filled' : 'btn-border'} onClick={handleDateForm}>Date</button>
         </div>
         <div className="flex">
           <label>Routing Number
@@ -160,7 +161,7 @@ function Form() {
           </label>
         </div>
         <br/>
-        {nthWeekdayForm || frequencyForm ? <button onClick={handleSubmit}>Submit</button> : null }
+        {nthWeekdayForm || frequencyForm || dateForm ? <button>Submit</button> : null }
       </form>
     </div>
   )

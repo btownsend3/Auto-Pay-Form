@@ -17,6 +17,7 @@ function ContextProvider(props) {
   const [weekday, setWeekday] = useState('')
   const [frequencyForm, setFrequencyForm] = useState(false)
   const [nthWeekdayForm, setNthWeekdayForm] = useState(false)
+  const [dateForm, setDateForm] = useState(false)
   
   function handleRouting(e) {
     setRoutingNum(prev => e.target.value)
@@ -62,12 +63,14 @@ function ContextProvider(props) {
     e.preventDefault()
     setFrequencyForm(prev => true)
     setNthWeekdayForm(prev => false)
+    setDateForm(prev => false)
   }
 
   function handleNthWeekdayForm(e) {
     e.preventDefault()
     setFrequencyForm(prev => false)
     setNthWeekdayForm(prev => true)
+    setDateForm(prev => false)
   }
 
   function handleNthWeekday(e) {
@@ -78,8 +81,15 @@ function ContextProvider(props) {
     setWeekday(prev => e.target.value)
   }
 
+  function handleDateForm(e) {
+    e.preventDefault()
+    setFrequencyForm(prev => false)
+    setNthWeekdayForm(prev => false)
+    setDateForm(prev => true)
+  }
+
   return (
-    <Context.Provider value={{handleRouting, handleAccount, handlePayment, routingNum, accountNum, payment, payFrequency, handlePayFrequency, firstDate, handleFirstDate, totalPayments, handleTotalPayments, checkingNames, debtorName, debtorNumber, collectorNumber, handleCheckingNames, handleDebtorName, handleDebtorNumber, handleCollectorNumber, setCompleteForm, completeForm, handleFrequencyForm, frequencyForm, handleNthWeekdayForm, nthWeekdayForm, handleNthWeekday, handleWeekday, weekday, nthWeekday}}>
+    <Context.Provider value={{handleRouting, handleAccount, handlePayment, routingNum, accountNum, payment, payFrequency, handlePayFrequency, firstDate, handleFirstDate, totalPayments, handleTotalPayments, checkingNames, debtorName, debtorNumber, collectorNumber, handleCheckingNames, handleDebtorName, handleDebtorNumber, handleCollectorNumber, setCompleteForm, completeForm, handleFrequencyForm, frequencyForm, handleNthWeekdayForm, nthWeekdayForm, handleNthWeekday, handleWeekday, weekday, nthWeekday, handleDateForm, dateForm}}>
       {props.children}
     </Context.Provider>
   )
