@@ -26,7 +26,6 @@ function ContextProvider(props) {
   const [secondFour, setSecondFour] = useState('')
   const [thirdFour, setThirdFour] = useState('')
   const [fourthFour, setFourthFour] = useState('')
-  const [expiration, setExpiration] = useState('')
   const [ccv, setCcv] = useState(null)
   const [expirationMonth, setExpirationMonth] = useState('')
   const [expirationYear, setExpirationYear] = useState('')

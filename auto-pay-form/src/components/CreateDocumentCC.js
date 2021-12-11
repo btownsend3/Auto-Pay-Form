@@ -28,15 +28,15 @@ function CreateDocumentCC() {
     : null
     
 
-  while (paymentDates.length < 12 || paymentDates == undefined) {
-    paymentDates.push({
-      key: paymentDates.length + 1,
-      payment: '____________',
-      day: '____',
-      month: '____',
-      year: '____'
-    })
-  }
+    while (paymentDates.length < 12) {
+      paymentDates.push({
+        key: paymentDates.length + 1,
+        payment: false,
+        day: false,
+        month: false,
+        year: false
+      })
+    }
 
   const paymentMap = paymentDates.map(item => {
     let date = item.month + '/' + item.day + '/' + item.year
@@ -49,6 +49,8 @@ function CreateDocumentCC() {
       <h1 className="text-center">Credit Card</h1>
       <p><strong>Collector #:</strong> {collectorNumber}</p>
       <p><strong>NAME ON CARD:</strong> {nameOnCard}</p>
+      <p><strong>BILLING ADDRESS:</strong> {billingAddress}</p>
+      <p><strong>ZIP CODE:</strong> {zipCode}</p>
       <p><strong>{cardIssuer}</strong></p>
       <p><strong>CARD NUMBER:</strong> {firstFour} {secondFour} {thirdFour} {fourthFour}</p>
       <p><strong>Expiration:</strong> {expirationMonth} / {expirationYear}</p>
