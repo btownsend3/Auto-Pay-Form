@@ -1,11 +1,11 @@
 import React, {useContext} from 'react'
-import {Context} from './Context'
+import {Context} from '../Context'
 import PaymentLineItem from './PaymentLineItem'
-import paymentFrequency from './paymentFrequency'
-import {getPaymentDates} from './nthDayOfTheWeek'
-import {dayOfTheMonth} from './dayOfTheMonth'
+import paymentFrequency from '../js/paymentFrequency'
+import {getPaymentDates} from '../js/nthDayOfTheWeek'
+import {dayOfTheMonth} from '../js/dayOfTheMonth'
 
-function CreateDocument() {
+function CreateDocumentPDC() {
   const {collectorNumber, debtorName, checkingNames, debtorNumber, payment, routingNum, accountNum, firstDate, payFrequency, totalPayments, frequencyForm, nthWeekdayForm, weekday, nthWeekday, dateForm} = useContext(Context)
   let paymentDates
   if (frequencyForm) {
@@ -19,10 +19,10 @@ function CreateDocument() {
   while (paymentDates.length < 20) {
     paymentDates.push({
       key: paymentDates.length + 1,
-      payment: '____________',
-      day: '____',
-      month: '____',
-      year: '____'
+      payment: false,
+      day: false,
+      month: false,
+      year: false
     })
   }
   const paymentMap = paymentDates.map(item => {
@@ -47,4 +47,4 @@ function CreateDocument() {
   )
 }
 
-export default CreateDocument
+export default CreateDocumentPDC

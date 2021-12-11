@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useRef} from 'react'
 const Context = React.createContext()
 
 function ContextProvider(props) {
@@ -18,6 +18,22 @@ function ContextProvider(props) {
   const [frequencyForm, setFrequencyForm] = useState(false)
   const [nthWeekdayForm, setNthWeekdayForm] = useState(false)
   const [dateForm, setDateForm] = useState(false)
+  // Added for card payments
+  const [nameOnCard, setNameOnCard] = useState('')
+  const [billingAddress, setBillingAddress] = useState('')
+  const [zipCode, setZipCode] = useState(null)
+  const [firstFour, setFirstFour] = useState('')
+  const [secondFour, setSecondFour] = useState('')
+  const [thirdFour, setThirdFour] = useState('')
+  const [fourthFour, setFourthFour] = useState('')
+  const [expiration, setExpiration] = useState('')
+  const [ccv, setCcv] = useState(null)
+  const [expirationMonth, setExpirationMonth] = useState('')
+  const [expirationYear, setExpirationYear] = useState('')
+  const firstFourRef = useRef(null)
+  const secondFourRef = useRef(null)
+  const thirdFourRef = useRef(null)
+  const fourthFourRef = useRef(null)
   
   function handleRouting(e) {
     setRoutingNum(prev => e.target.value)
@@ -88,8 +104,50 @@ function ContextProvider(props) {
     setDateForm(prev => true)
   }
 
+  // added for card payments
+
+  function handleNameOnCard(e) {
+    setNameOnCard(prev => e.target.value)
+  }
+  function handleBillingAddress(e) {
+    setBillingAddress(prev => e.target.value)
+  }
+  function handleZipCode(e) {
+    setZipCode(prev => e.target.value)
+  }
+  function handleFirstFour(e) {
+    setFirstFour(prev => e.target.value)
+    if (e.target.value.length === 4) {
+      secondFourRef.current.focus()
+    }
+  }
+  function handleSecondFour(e) {
+    setSecondFour(prev => e.target.value)
+    if (e.target.value.length === 4) {
+      thirdFourRef.current.focus()
+    }
+  }
+  function handleThirdFour(e) {
+    setThirdFour(prev => e.target.value)
+    if (e.target.value.length === 4) {
+      fourthFourRef.current.focus()
+    }
+  }
+  function handleFourthFour(e) {
+      setFourthFour(prev => e.target.value)
+  }
+  function handleExpirationMonth(e) {
+    setExpirationMonth(prev => e.target.value)
+  }
+  function handleExpirationYear(e) {
+    setExpirationYear(prev => e.target.value)
+  }
+  function handleCcv(e) {
+    setCcv(prev => e.target.value)
+  }
+
   return (
-    <Context.Provider value={{handleRouting, handleAccount, handlePayment, routingNum, accountNum, payment, payFrequency, handlePayFrequency, firstDate, handleFirstDate, totalPayments, handleTotalPayments, checkingNames, debtorName, debtorNumber, collectorNumber, handleCheckingNames, handleDebtorName, handleDebtorNumber, handleCollectorNumber, setCompleteForm, completeForm, handleFrequencyForm, frequencyForm, handleNthWeekdayForm, nthWeekdayForm, handleNthWeekday, handleWeekday, weekday, nthWeekday, handleDateForm, dateForm}}>
+    <Context.Provider value={{handleRouting, handleAccount, handlePayment, routingNum, accountNum, payment, payFrequency, handlePayFrequency, firstDate, handleFirstDate, totalPayments, handleTotalPayments, checkingNames, debtorName, debtorNumber, collectorNumber, handleCheckingNames, handleDebtorName, handleDebtorNumber, handleCollectorNumber, setCompleteForm, completeForm, handleFrequencyForm, frequencyForm, handleNthWeekdayForm, nthWeekdayForm, handleNthWeekday, handleWeekday, weekday, nthWeekday, handleDateForm, dateForm, billingAddress, handleBillingAddress, zipCode, handleZipCode, firstFour, handleFirstFour, secondFour, handleSecondFour, thirdFour, handleThirdFour, fourthFour, handleFourthFour, ccv, handleCcv, firstFourRef, secondFourRef, thirdFourRef, fourthFourRef, expirationMonth, handleExpirationMonth, expirationYear, handleExpirationYear, nameOnCard, handleNameOnCard}}>
       {props.children}
     </Context.Provider>
   )

@@ -1,5 +1,5 @@
 import React, {useContext} from 'react'
-import {Context} from './Context'
+import {Context} from '../Context'
 
 function Form() {
   const {handleRouting, handleAccount, handlePayment, routingNum, accountNum, payment, payFrequency, handlePayFrequency, firstDate, handleFirstDate, totalPayments, handleTotalPayments, checkingNames, debtorName, debtorNumber, collectorNumber, handleCheckingNames, handleDebtorName, handleDebtorNumber, handleCollectorNumber, setCompleteForm, handleFrequencyForm, frequencyForm, handleNthWeekdayForm, nthWeekdayForm, handleNthWeekday, nthWeekday, weekday, handleWeekday, handleDateForm, dateForm} = useContext(Context)
